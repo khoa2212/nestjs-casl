@@ -31,7 +31,6 @@ export class UserController {
     }
     
     @Post()
-    //@UseGuards(AbilityGuard)
     @CheckAbility({ action: Action.Create, subject: User })
     createUser(@Body() user: User){
         
@@ -52,15 +51,13 @@ export class UserController {
         return this.userService.deleteUser(user);
     }
 
-    @Patch()
-    //@UseGuards(AbilityGuard)
+    @Put()
     @CheckAbility({ action: Action.Update, subject: User })
-    blockUser(){
-        
+    blockUser(@Body() user: User){
+        return this.userService.blockUser(user);
     }
 
     @Get(':id')
-    //@UseGuards(AbilityGuard)
     @CheckAbility({ action: Action.Read, subject: User })
     getUserById(@Param('id') id: number): User{
         return this.userService.getUserById(id);

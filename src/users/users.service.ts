@@ -42,12 +42,13 @@ export class UserService {
     deleteUser(user: User) : boolean{
         const len = this.ListUser.length;
 
-        const index = this.ListUser.indexOf(user, 0);
+        const index = this.ListUser.findIndex((item) => {
+            return item.id == user.id
+        })
+
         if (index > -1) {
             this.ListUser.splice(index, 1);   
         }
-        console.log(index)
-        console.log(this.ListUser);
         if(this.ListUser.length === len - 1)
         {
             console.log("Xoa thanh cong")
@@ -58,5 +59,25 @@ export class UserService {
             console.log("Xoa that bai")
             return false
         }
-    }    
+    }
+    
+    blockUser(user: User){
+        const index = this.ListUser.findIndex((item) => {
+            return item.id == user.id
+        })
+        
+        const oldUser = this.ListUser[index];
+        this.ListUser[index] = user;
+
+        if(oldUser !== user)
+        {
+            console.log(`Da khoa tai khoan ${user.id}`)
+            return true;
+        }
+        else
+        {
+            console.log("Khoa tai khoan that bai")
+            return false
+        }
+    }
 }

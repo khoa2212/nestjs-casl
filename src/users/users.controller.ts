@@ -45,7 +45,6 @@ export class UserController {
     }
 
     @Delete()
-    @UseGuards(AbilityGuard)
     @CheckAbility({ action: Action.Delete, subject: User })
     deleteUser(@Body() user: User){
         return this.userService.deleteUser(user);

@@ -26,16 +26,30 @@ export class AbilityFactory {
     defineAbility(user: User){
         const {can, cannot, build} = new AbilityBuilder(PureAbility as AbilityClass<AppAbility>)
 
-        if(user.isAdmin)
+        switch(user.role)
         {
-            can(Action.Manage, 'all');
-        }
-        else
-        {
-            can(Action.Read, User);
-            cannot(Action.Create, User).because("Only admin can create user!!")
-            cannot(Action.Delete, User).because("Only admin can delete user!!")
-            cannot(Action.Update, User).because("Only admin can block user!!")
+            case "Admin":
+                {
+                    can(Action.Manage, 'all');
+                    break;
+                }
+            case "Customer":
+                {
+                    can(Action.Read, User);
+                    cannot(Action.Create, User).because("Only Employee and admin can create user!!")
+                    cannot(Action.Delete, User).because("Only admin can delete user!!")
+                    cannot(Action.Update, User).because("Only admin can block user!!")
+                    break;
+                }
+            case "Employee":
+                {
+                    can(Action.Read, User);
+                    can(Action.Create, User);
+                    cannot(Action.Delete, User).because("Only admin can delete user!!")
+                    cannot(Action.Update, User).because("Only admin can block user!!")
+                }
+            default:
+                break;
         }
 
         return build({

@@ -5,11 +5,11 @@ import { Injectable } from "@nestjs/common";
 export class UserService {
     
     ListUser: User[] = [
-        {id: 1, username: "khoa", password: "123", isAdmin: true, isBlocked: false}, 
-        {id: 2, username: "Jimmy", password: "123", isAdmin: false, isBlocked: false},
-        {id: 3, username: "Jimmy1", password: "123", isAdmin: false, isBlocked: false},
-        {id: 4, username: "Jimmy2", password: "123", isAdmin: false, isBlocked: false},
-        {id: 5, username: "Jimmy3", password: "123", isAdmin: false, isBlocked: false}
+        {id: 1, username: "Jimmy", password: "123", role:"Admin", isBlocked: false}, 
+        {id: 2, username: "Jonh", password: "123", role:"Customer", isBlocked: false},
+        {id: 3, username: "Kim", password: "123", role:"Customer", isBlocked: false},
+        {id: 4, username: "Harry", password: "123", role:"Employee", isBlocked: false},
+        {id: 5, username: "Tom", password: "123", role:"Employee", isBlocked: false}
     ]
 
     getAllUsers() : User[] {

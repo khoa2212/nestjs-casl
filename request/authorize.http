@@ -1,0 +1,47 @@
+@baseUrl = http://localhost:3002
+
+
+###
+# @name getUser
+GET {{baseUrl}}/users
+Content-Type: application/json
+
+###
+# @name addUser
+POST {{baseUrl}}/users
+Content-Type: application/json
+
+{
+    "id":6,
+    "username":"New User",
+    "password":"123",
+    "role":"Customer",
+    "isBlocked":false
+}
+
+###
+# @name deleteUser
+DELETE  {{baseUrl}}/users
+Content-Type: application/json
+
+{
+    "id":6,
+    "username":"New User",
+    "password":"123",
+    "role":"Customer",
+    "isBlocked":false
+}
+
+###
+# @name blockUser
+PUT  {{baseUrl}}/users
+Content-Type: application/json
+
+{
+    "id":6,
+    "username":"New User",
+    "password":"123",
+    "role":"Customer",
+    "isBlocked":true
+}
+
